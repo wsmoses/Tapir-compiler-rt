@@ -29,10 +29,10 @@ typedef int64_t csi_id_t;
 #define UNKNOWN_CSI_ID ((csi_id_t)-1)
 
 typedef struct {
-  csi_id_t num_bb;
-  csi_id_t num_callsite;
   csi_id_t num_func;
   csi_id_t num_func_exit;
+  csi_id_t num_bb;
+  csi_id_t num_callsite;
   csi_id_t num_load;
   csi_id_t num_store;
 } instrumentation_counts_t;
@@ -40,18 +40,26 @@ typedef struct {
 // Property bitfields.
 
 typedef struct {
+  // The function might spawn.
+  unsigned may_spawn : 1;
   // Pad struct to 64 total bits.
-  uint64_t _padding : 64;
+  uint64_t _padding : 63;
 } func_prop_t;
 
 typedef struct {
+  // The function might have spawned.
+  unsigned may_spawn : 1;
   // Pad struct to 64 total bits.
-  uint64_t _padding : 64;
+  uint64_t _padding : 63;
 } func_exit_prop_t;
 
 typedef struct {
+  // The basic block is a landingpad.
+  unsigned is_landingpad : 1;
+  // The basic block is an exception-handling pad.
+  unsigned is_ehpad : 1;
   // Pad struct to 64 total bits.
-  uint64_t _padding : 64;
+  uint64_t _padding : 62;
 } bb_prop_t;
 
 typedef struct {
@@ -139,6 +147,7 @@ typedef struct {
     char *name;
     // TODO(ddoucet): Why is this 32 bits?
     int32_t line_number;
+    int32_t column_number;
     char *filename;
 } source_loc_t;
 
