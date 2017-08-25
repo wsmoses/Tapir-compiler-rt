@@ -14,6 +14,6 @@ void __csi_init() {
 }
 
 void __csi_before_call(const csi_id_t call_id, const csi_id_t func_id,
-                       const csi_prop_t prop) {
+                       const call_prop_t prop) {
     num_function_calls++;
 }
