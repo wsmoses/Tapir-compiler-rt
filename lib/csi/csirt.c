@@ -27,9 +27,9 @@ typedef struct {
 
 // Types of FED tables that we maintain across all units.
 typedef enum {
-    FED_TYPE_BASICBLOCK,
     FED_TYPE_FUNCTIONS,
     FED_TYPE_FUNCTION_EXIT,
+    FED_TYPE_BASICBLOCK,
     FED_TYPE_CALLSITE,
     FED_TYPE_LOAD,
     FED_TYPE_STORE,
