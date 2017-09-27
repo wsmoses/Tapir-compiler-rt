@@ -35,6 +35,11 @@ typedef struct {
   csi_id_t num_callsite;
   csi_id_t num_load;
   csi_id_t num_store;
+  csi_id_t num_detach;
+  csi_id_t num_task;
+  csi_id_t num_task_exit;
+  csi_id_t num_detach_continue;
+  csi_id_t num_sync;
 } instrumentation_counts_t;
 
 // Property bitfields.
@@ -152,12 +157,17 @@ typedef struct {
 } source_loc_t;
 
 // Front-end data (FED) table accessors.
-source_loc_t const * __csi_get_func_source_loc(const csi_id_t func_id);
-source_loc_t const * __csi_get_func_exit_source_loc(const csi_id_t func_exit_id);
-source_loc_t const * __csi_get_bb_source_loc(const csi_id_t bb_id);
-source_loc_t const * __csi_get_callsite_source_loc(const csi_id_t call_id);
-source_loc_t const * __csi_get_load_source_loc(const csi_id_t load_id);
-source_loc_t const * __csi_get_store_source_loc(const csi_id_t store_id);
+const source_loc_t * __csi_get_func_source_loc(const csi_id_t func_id);
+const source_loc_t * __csi_get_func_exit_source_loc(const csi_id_t func_exit_id);
+const source_loc_t * __csi_get_bb_source_loc(const csi_id_t bb_id);
+const source_loc_t * __csi_get_callsite_source_loc(const csi_id_t call_id);
+const source_loc_t * __csi_get_load_source_loc(const csi_id_t load_id);
+const source_loc_t * __csi_get_store_source_loc(const csi_id_t store_id);
+const source_loc_t * __csi_get_detach_source_loc(const csi_id_t detach_id);
+const source_loc_t * __csi_get_task_source_loc(const csi_id_t task_id);
+const source_loc_t * __csi_get_task_exit_source_loc(const csi_id_t task_exit_id);
+const source_loc_t * __csi_get_detach_continue_source_loc(const csi_id_t detach_continue_id);
+const source_loc_t * __csi_get_sync_source_loc(const csi_id_t sync_id);
 
 // Load property:
 #define CSI_PROP_LOAD_READ_BEFORE_WRITE_IN_BB 0x1
