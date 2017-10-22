@@ -1038,14 +1038,16 @@ bool MD5Hash::operator==(const MD5Hash &other) const {
 #if SANITIZER_DEBUG
 void build_consistency_debug() {}
 #else
- __attribute__((visibility("default"))) // [CSI-TSan]: Required for instrumented shared objects.
+// [CSI-TSan]: Required for instrumented shared objects.
+__attribute__((visibility("default")))
 void build_consistency_release() {}
 #endif
 
 #if TSAN_COLLECT_STATS
 void build_consistency_stats() {}
 #else
-__attribute__((visibility("default"))) // [CSI-TSan]: Required for instrumented shared objects.
+// [CSI-TSan]: Required for instrumented shared objects.
+__attribute__((visibility("default")))
 void build_consistency_nostats() {}
 #endif
 
