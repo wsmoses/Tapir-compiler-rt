@@ -146,6 +146,20 @@ WEAK void __csi_after_store(const csi_id_t store_id,
                             const int32_t num_bytes,
                             const store_prop_t prop);
 
+WEAK void __csi_detach(const csi_id_t detach_id);
+
+WEAK void __csi_task(const csi_id_t task_id, const csi_id_t detach_id,
+                     void *sp);
+
+WEAK void __csi_task_exit(const csi_id_t task_exit_id,
+                          const csi_id_t task_id,
+                          const csi_id_t detach_id);
+
+WEAK void __csi_detach_continue(const csi_id_t detach_continue_id,
+                                const csi_id_t detach_id);
+
+WEAK void __csi_sync(const csi_id_t sync_id);
+
 // This struct is mirrored in ComprehensiveStaticInstrumentation.cpp,
 // FrontEndDataTable::getSourceLocStructType.
 typedef struct {
@@ -155,6 +169,11 @@ typedef struct {
     int32_t column_number;
     char *filename;
 } source_loc_t;
+
+typedef struct sizeinfo_t {
+    int32_t full_ir_size;
+    int32_t non_empty_size;
+} sizeinfo_t;
 
 // Front-end data (FED) table accessors.
 const source_loc_t * __csi_get_func_source_loc(const csi_id_t func_id);
@@ -168,9 +187,10 @@ const source_loc_t * __csi_get_task_source_loc(const csi_id_t task_id);
 const source_loc_t * __csi_get_task_exit_source_loc(const csi_id_t task_exit_id);
 const source_loc_t * __csi_get_detach_continue_source_loc(const csi_id_t detach_continue_id);
 const source_loc_t * __csi_get_sync_source_loc(const csi_id_t sync_id);
+const sizeinfo_t *__csi_get_bb_sizeinfo(const csi_id_t bb_id);
 
 // Load property:
-#define CSI_PROP_LOAD_READ_BEFORE_WRITE_IN_BB 0x1
+//#define CSI_PROP_LOAD_READ_BEFORE_WRITE_IN_BB 0x1
 
 EXTERN_C_END
 
