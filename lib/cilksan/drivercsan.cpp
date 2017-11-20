@@ -22,8 +22,8 @@
 FILE *err_io;
 
 // Defined in print_addr.cpp
-// extern void read_proc_maps();
-// extern void delete_proc_maps();
+extern void read_proc_maps();
+extern void delete_proc_maps();
 extern void print_addr(FILE *f, void *a);
 // declared in cilksan; for debugging only
 #if CILKSAN_DEBUG
