@@ -79,6 +79,7 @@ check_library_exists(rt shm_open "" COMPILER_RT_HAS_LIBRT)
 check_library_exists(m pow "" COMPILER_RT_HAS_LIBM)
 check_library_exists(pthread pthread_create "" COMPILER_RT_HAS_LIBPTHREAD)
 check_library_exists(stdc++ __cxa_throw "" COMPILER_RT_HAS_LIBSTDCXX)
+check_library_exists(snappy snappy_compress "" COMPILER_RT_HAS_SNAPPY)
 
 # Linker flags.
 if(ANDROID)
@@ -182,6 +183,7 @@ set(ALL_ESAN_SUPPORTED_ARCH ${X86_64} ${MIPS64})
 set(ALL_SCUDO_SUPPORTED_ARCH ${X86} ${X86_64} ${ARM32} ${ARM64} ${MIPS32} ${MIPS64})
 set(ALL_XRAY_SUPPORTED_ARCH ${X86_64} ${ARM32} ${ARM64} ${MIPS32} ${MIPS64} powerpc64le)
 set(ALL_CSI_SUPPORTED_ARCH ${X86_64})
+set(ALL_CILKSAN_SUPPORTED_ARCH ${X86_64})
 
 if(APPLE)
   include(CompilerRTDarwinUtils)
@@ -388,6 +390,9 @@ if(APPLE)
   list_intersect(CSI_SUPPORTED_ARCH
     ALL_CSI_SUPPORTED_ARCH
     SANITIZER_COMMON_SUPPORTED_ARCH)
+  list_intersect(CILKSAN_SUPPORTED_ARCH
+    ALL_CILKSAN_SUPPORTED_ARCH
+    SANITIZER_COMMON_SUPPORTED_ARCH)
 else()
   # Architectures supported by compiler-rt libraries.
   filter_available_targets(SANITIZER_COMMON_SUPPORTED_ARCH
@@ -412,6 +417,7 @@ else()
   filter_available_targets(SCUDO_SUPPORTED_ARCH ${ALL_SCUDO_SUPPORTED_ARCH})
   filter_available_targets(XRAY_SUPPORTED_ARCH ${ALL_XRAY_SUPPORTED_ARCH})
   filter_available_targets(CSI_SUPPORTED_ARCH ${ALL_CSI_SUPPORTED_ARCH})
+  filter_available_targets(CILKSAN_SUPPORTED_ARCH ${ALL_CILKSAN_SUPPORTED_ARCH})
 endif()
 
 if (MSVC)
@@ -554,4 +560,11 @@ if (COMPILER_RT_HAS_SANITIZER_COMMON AND CSI_SUPPORTED_ARCH AND
   set(COMPILER_RT_HAS_CSI TRUE)
 else()
   set(COMPILER_RT_HAS_CSI FALSE)
+endif()
+
+if (COMPILER_RT_HAS_SANITIZER_COMMON AND CILKSAN_SUPPORTED_ARCH AND
+    OS_NAME MATCHES "Linux")
+  set(COMPILER_RT_HAS_CILKSAN TRUE)
+else()
+  set(COMPILER_RT_HAS_CILKSAN FALSE)
 endif()
