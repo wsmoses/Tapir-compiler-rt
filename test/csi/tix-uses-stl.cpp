@@ -16,6 +16,7 @@ int main(int argc, char **argv) {
   std::vector<int> stackVec;
   for (int i = 0; i < 10; i++)
     stackVec.push_back(i);
-  // CHECK: num_function_calls = 412
+  // CHECK: num_function_calls =
+  // CHECK-NOT: {{0|1}}
   return 0;
 }
