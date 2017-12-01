@@ -47,6 +47,10 @@ if(COMPILER_RT_BUILD_XRAY)
   compiler_rt_build_runtime(xray)
 endif()
 
-if(COMPILER_RT_HAS_CSI)
-  add_subdirectory(csi)
+if(COMPILER_RT_BUILD_CSI)
+  compiler_rt_build_runtime(csi)
+endif()
+
+if(COMPILER_RT_BUILD_CILKSAN)
+  compiler_rt_build_runtime(cilksan)
 endif()
