@@ -51,6 +51,7 @@ if(COMPILER_RT_BUILD_CSI)
   compiler_rt_build_runtime(csi)
 endif()
 
-if(COMPILER_RT_BUILD_CILKSAN)
+if(COMPILER_RT_BUILD_CILKTOOLS)
   compiler_rt_build_runtime(cilksan)
+  compiler_rt_build_runtime(cilkscale)
 endif()
