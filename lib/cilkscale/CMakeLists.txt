@@ -6,7 +6,7 @@ set(CILKSCALE_SOURCES
 
 include_directories(..)
 
-set(CILKSCALE_CFLAGS ${SANITIZER_COMMON_CFLAGS} -std=c++11)
+set(CILKSCALE_RTL_CFLAGS ${SANITIZER_COMMON_CFLAGS} -std=c++11)
 
 append_rtti_flag(OFF CILKSCALE_CFLAGS)
 
