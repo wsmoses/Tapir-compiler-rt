@@ -17,6 +17,6 @@ int main(int argc, char **argv) {
   for (int i = 0; i < 10; i++)
     stackVec.push_back(i);
   // CHECK: num_function_calls =
-  // CHECK-NOT: {{0|1}}
+  // CHECK-NOT: {{num_function_calls = 0|num_function_calls = 1}}
   return 0;
 }
