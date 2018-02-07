@@ -32,7 +32,7 @@ option(COMPILER_RT_BUILD_XRAY "Build xray" ON)
 mark_as_advanced(COMPILER_RT_BUILD_XRAY)
 option(COMPILER_RT_BUILD_CSI "Build csi" ON)
 mark_as_advanced(COMPILER_RT_BUILD_CSI)
-option(COMPILER_RT_BUILD_CILKTOOLS "Build Cilk tools" OFF)
+option(COMPILER_RT_BUILD_CILKTOOLS "Build Cilk tools" ON)
 mark_as_advanced(COMPILER_RT_BUILD_CILKTOOLS)
 
 set(COMPILER_RT_BAREMETAL_BUILD OFF CACHE BOOLEAN
