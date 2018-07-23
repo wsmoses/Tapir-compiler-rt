@@ -65,3 +65,7 @@ if(COMPILER_RT_BUILD_CILKTOOLS)
   endif()
   compiler_rt_build_runtime(cilkscale)
 endif()
+
+if(CUDA_FOUND)
+  compiler_rt_build_runtime(kitsune)
+endif()
