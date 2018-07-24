@@ -42,6 +42,8 @@ option(COMPILER_RT_BUILD_CSI "Build csi" ON)
 mark_as_advanced(COMPILER_RT_BUILD_CSI)
 option(COMPILER_RT_BUILD_CILKTOOLS "Build Cilk tools" ON)
 mark_as_advanced(COMPILER_RT_BUILD_CILKTOOLS)
+option(COMPILER_RT_BUILD_KITSUNE "Build Kitsune runtime" OFF)
+mark_as_advanced(COMPILER_RT_BUILD_KITSUNE)
 
 set(COMPILER_RT_ASAN_SHADOW_SCALE ""
     CACHE STRING "Override the shadow scale to be used in ASan runtime")
