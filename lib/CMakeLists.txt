@@ -60,6 +60,13 @@ if(COMPILER_RT_BUILD_CILKTOOLS)
   compiler_rt_build_runtime(cilkscale)
 endif()
 
-if(CUDA_FOUND)
+if(COMPILER_RT_BUILD_KITSUNE)
+  find_package(CUDA)
+
+  if(NOT CUDA_FOUND)
+    message(FATAL_ERROR
+       "CUDA is required to build Kitsune")
+  endif()
+
   compiler_rt_build_runtime(kitsune)
 endif()

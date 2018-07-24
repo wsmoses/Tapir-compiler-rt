@@ -34,6 +34,8 @@ option(COMPILER_RT_BUILD_CSI "Build csi" ON)
 mark_as_advanced(COMPILER_RT_BUILD_CSI)
 option(COMPILER_RT_BUILD_CILKTOOLS "Build Cilk tools" ON)
 mark_as_advanced(COMPILER_RT_BUILD_CILKTOOLS)
+option(COMPILER_RT_BUILD_KITSUNE "Build Kitsune runtime" OFF)
+mark_as_advanced(COMPILER_RT_BUILD_KITSUNE)
 
 set(COMPILER_RT_BAREMETAL_BUILD OFF CACHE BOOLEAN
   "Build for a bare-metal target.")
