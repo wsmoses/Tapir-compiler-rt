@@ -1,6 +1,7 @@
 # Build for the ComprehensiveStaticInstrumentation runtime support library.
 
-add_custom_target(csi)
+
+add_compiler_rt_component(csi)
 
 set(CSI_RTL_CFLAGS ${SANITIZER_COMMON_CFLAGS})
 append_list_if(COMPILER_RT_HAS_STD_C11_FLAG -std=c11 CILKSCALE_CFLAGS)
